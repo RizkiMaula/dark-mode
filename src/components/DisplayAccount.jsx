@@ -1,18 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
-import { darkMode } from '../redux/slices/accountSlice';
+import DarkModeButton from './DarkModeButton';
 
 const DisplayAccount = () => {
   const account = useSelector((state) => state.account);
-
-  const dispatch = useDispatch();
-
-  // const darkModehandler = (darkMode) => {
-  //   darkMode ? console.log('lagi darkmode') : console.log('lagi lightmode');
-  // };
-
-  console.log(account.darkMode ? 'darkmode' : 'lightmode');
 
   return (
     <div>
@@ -21,12 +13,7 @@ const DisplayAccount = () => {
       <Deposit />
       <Withdraw />
       <hr />
-      <button
-        className={`${account.darkMode ? 'dark-button' : 'light-button'}`}
-        onClick={() => dispatch(darkMode({ darkMode: !account.darkMode }))}
-      >
-        {account.darkMode ? 'Light Mode' : 'Dark Mode'}
-      </button>
+      <DarkModeButton />
     </div>
   );
 };

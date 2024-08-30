@@ -1,13 +1,19 @@
 import { useDispatch } from 'react-redux';
+import { darkMode } from '../redux/slices/accountSlice';
+import { useSelector } from 'react-redux';
 
 const DarkModeButton = () => {
+  const account = useSelector((state) => state.account);
   const dispatch = useDispatch();
-  const toggleDarkMode = () => {
-    dispatch({ type: 'darkMode/toggle' });
-  };
+
   return (
     <div>
-      <button onClick={toggleDarkMode}>Dark Mode</button>
+      <button
+        className={`${account.darkMode ? 'dark-button' : 'light-button'}`}
+        onClick={() => dispatch(darkMode({ darkMode: !account.darkMode }))}
+      >
+        {account.darkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
     </div>
   );
 };
